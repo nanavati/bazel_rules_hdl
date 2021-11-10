@@ -30,13 +30,13 @@ exports_files(["LICENSE"])
 cc_library(
     name = "glpk",
     srcs = glob(
-      include = [
-        "src/*.c",
-        "src/*/*.c",
-      ],
-      exclude = [
-        "src/zlib/*"
-      ]
+        include = [
+            "src/*.c",
+            "src/*/*.c",
+        ],
+        exclude = [
+            "src/zlib/*",
+        ],
     ) + [
         "src/amd/amd.h",
         "src/amd/amd_internal.h",
@@ -73,7 +73,7 @@ cc_library(
         "src/minisat/minisat.h",
     ],
     includes = [
-      "src",
+        "src",
     ],
     hdrs = [
         "include/glpk.h",
@@ -119,8 +119,8 @@ cc_binary(
 )
 
 genrule(
-  name = "glpk_header_gen",
-  srcs = ["src/glpk.h"],
-  outs = ["include/glpk.h"],
-  cmd = "cat $(location src/glpk.h) > $@",
+    name = "glpk_header_gen",
+    srcs = ["src/glpk.h"],
+    outs = ["include/glpk.h"],
+    cmd = "cat $(location src/glpk.h) > $@",
 )

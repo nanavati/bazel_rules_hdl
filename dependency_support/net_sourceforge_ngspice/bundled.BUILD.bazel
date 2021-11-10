@@ -105,13 +105,17 @@ COPTS = ["-w"]
 ) for subdir in GENERATED_FILE_SUBDIRS]
 
 IDM_FILES = [
-    "src/xspice/icm/%s/cminfo.h" % subdir for subdir in GENERATED_FILE_SUBDIRS
+    "src/xspice/icm/%s/cminfo.h" % subdir
+    for subdir in GENERATED_FILE_SUBDIRS
 ] + [
-    "src/xspice/icm/%s/cmextrn.h" % subdir for subdir in GENERATED_FILE_SUBDIRS
+    "src/xspice/icm/%s/cmextrn.h" % subdir
+    for subdir in GENERATED_FILE_SUBDIRS
 ] + [
-    "src/xspice/icm/%s/udnextrn.h" % subdir for subdir in GENERATED_FILE_SUBDIRS
+    "src/xspice/icm/%s/udnextrn.h" % subdir
+    for subdir in GENERATED_FILE_SUBDIRS
 ] + [
-    "src/xspice/icm/%s/udninfo.h" % subdir for subdir in GENERATED_FILE_SUBDIRS
+    "src/xspice/icm/%s/udninfo.h" % subdir
+    for subdir in GENERATED_FILE_SUBDIRS
 ] + [
     # TODO This is not used because this requires compiling these as shared
     # libraries, which is not implemented yet by this BUILD file.

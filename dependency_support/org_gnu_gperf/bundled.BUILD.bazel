@@ -57,5 +57,5 @@ pseudo_configure(
     src = "src/config.h.in",
     out = "src/config.h",
     defs = [],
-    mappings = {'HAVE_DYNAMIC_ARRAY': '0', 'PACKAGE_BUGREPORT': '""', 'PACKAGE_NAME': '""', 'PACKAGE_STRING': '""', 'PACKAGE_TARNAME': '""', 'PACKAGE_VERSION': '""'},
+    mappings = {"HAVE_DYNAMIC_ARRAY": "0", "PACKAGE_BUGREPORT": '""', "PACKAGE_NAME": '""', "PACKAGE_STRING": '""', "PACKAGE_TARNAME": '""', "PACKAGE_VERSION": '""'},
 )

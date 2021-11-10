@@ -29,7 +29,6 @@ DEFINES = [
     "NETGEN_DATE=\"\\\"REDACTED\"\\\"",
 ]
 
-
 COPTS = [
     "-std=gnu89",
     "-w",

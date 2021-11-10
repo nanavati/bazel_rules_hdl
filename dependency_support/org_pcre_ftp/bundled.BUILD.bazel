@@ -92,7 +92,6 @@ PCRE32_DEFS = PCRE_COMMON_DEFS + [
 cc_library(
     name = "internal_hdrs",
     hdrs = PCRE_INTERNAL_HDRS + PCRE_HDRS,
-
     copts = PCRE8_DEFS,
     visibility = ["//visibility:private"],
 )
@@ -101,19 +100,17 @@ cc_library(
     name = "pcre",
     srcs = PCRE8_SRCS,
     hdrs = PCRE_HDRS,
-
     copts = PCRE8_DEFS,
     includes = ["include"],
     deps = [":internal_hdrs"],
     visibility = [
-      "@org_swig//:__subpackages__",
-    ]
+        "@org_swig//:__subpackages__",
+    ],
 )
 
 cc_library(
     name = "pcre16_hdrs",
     hdrs = PCRE_INTERNAL_HDRS + PCRE_HDRS + PCRE8_SRCS,
-
     copts = PCRE16_DEFS,
     visibility = ["//visibility:private"],
 )
@@ -122,7 +119,6 @@ cc_library(
     name = "pcre16",
     srcs = PCRE16_SRCS,
     hdrs = PCRE_HDRS,
-
     copts = PCRE16_DEFS,
     includes = ["include"],
     deps = [":pcre16_hdrs"],
@@ -216,45 +212,45 @@ filegroup(
 )
 
 genrule(
-  name = "config",
-  srcs = ["@rules_hdl//dependency_support/org_pcre_ftp:config.h"],
-  outs = ["config.h"],
-  cmd = "cat $(location @rules_hdl//dependency_support/org_pcre_ftp:config.h) > $@",
+    name = "config",
+    srcs = ["@rules_hdl//dependency_support/org_pcre_ftp:config.h"],
+    outs = ["config.h"],
+    cmd = "cat $(location @rules_hdl//dependency_support/org_pcre_ftp:config.h) > $@",
 )
 
 genrule(
-  name = "pcre_header_gen",
-  srcs = ["@rules_hdl//dependency_support/org_pcre_ftp:pcre.h"],
-  outs = ["include/pcre.h"],
-  cmd = "cat $(location @rules_hdl//dependency_support/org_pcre_ftp:pcre.h) > $@",
+    name = "pcre_header_gen",
+    srcs = ["@rules_hdl//dependency_support/org_pcre_ftp:pcre.h"],
+    outs = ["include/pcre.h"],
+    cmd = "cat $(location @rules_hdl//dependency_support/org_pcre_ftp:pcre.h) > $@",
 )
 
 genrule(
-  name = "pcre_header_gen_top",
-  srcs = ["@rules_hdl//dependency_support/org_pcre_ftp:pcre.h"],
-  outs = ["pcre.h"],
-  cmd = "cat $(location @rules_hdl//dependency_support/org_pcre_ftp:pcre.h) > $@",
+    name = "pcre_header_gen_top",
+    srcs = ["@rules_hdl//dependency_support/org_pcre_ftp:pcre.h"],
+    outs = ["pcre.h"],
+    cmd = "cat $(location @rules_hdl//dependency_support/org_pcre_ftp:pcre.h) > $@",
 )
 
 genrule(
-  name = "pcreposix_header_gen",
-  srcs = ["pcreposix.h"],
-  outs = ["include/pcreposix.h"],
-  cmd = "cat $(location pcreposix.h) > $@",
+    name = "pcreposix_header_gen",
+    srcs = ["pcreposix.h"],
+    outs = ["include/pcreposix.h"],
+    cmd = "cat $(location pcreposix.h) > $@",
 )
 
 genrule(
-  name = "runtest_gen",
-  srcs = ["@rules_hdl//dependency_support/org_pcre_ftp:RunTest.bazel"],
-  outs = ["RunTest.bazel"],
-  cmd = "cat $(location @rules_hdl//dependency_support/org_pcre_ftp:RunTest.bazel) > $@",
+    name = "runtest_gen",
+    srcs = ["@rules_hdl//dependency_support/org_pcre_ftp:RunTest.bazel"],
+    outs = ["RunTest.bazel"],
+    cmd = "cat $(location @rules_hdl//dependency_support/org_pcre_ftp:RunTest.bazel) > $@",
 )
 
 genrule(
-  name = "pcre_chartables_gen",
-  srcs = ["pcre_chartables.c.dist"],
-  outs = ["pcre_chartables.c"],
-  cmd = "cat $(location pcre_chartables.c.dist) > $@",
+    name = "pcre_chartables_gen",
+    srcs = ["pcre_chartables.c.dist"],
+    outs = ["pcre_chartables.c"],
+    cmd = "cat $(location pcre_chartables.c.dist) > $@",
 )
 
 sh_test(

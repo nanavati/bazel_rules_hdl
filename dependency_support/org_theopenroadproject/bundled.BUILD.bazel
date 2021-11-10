@@ -109,7 +109,7 @@ cc_binary(
         "-Wcast-qual",
         "-Wredundant-decls",
         "-Wformat-security",
-        "-fopenmp"
+        "-fopenmp",
     ],
     features = ["-use_header_modules"],
     visibility = ["//visibility:public"],
@@ -343,7 +343,7 @@ cc_library(
         "src/stt/include/stt",
     ],
     defines = [
-      "OPENROAD_GIT_DESCRIBE=\\\"bazel_rules_hdl\\\""
+        "OPENROAD_GIT_DESCRIBE=\\\"bazel_rules_hdl\\\"",
     ],
     linkstatic = True,
     deps = [
@@ -1000,7 +1000,7 @@ tcl_wrap_cc(
     namespace_prefix = "odb",
     root_swig_src = "src/odb/src/swig/common/odb.i",
     swig_includes = [
-      "src/odb/include",
+        "src/odb/include",
         "src/odb/include/odb",
         "src/odb/src/swig/tcl",
     ],
@@ -1048,7 +1048,7 @@ cc_library(
         "-Wno-error",
     ],
     features = [
-      "-use_header_modules",
+        "-use_header_modules",
     ],
     includes = [
         "src/odb/include",

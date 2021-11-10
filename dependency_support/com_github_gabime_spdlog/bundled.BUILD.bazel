@@ -64,5 +64,5 @@ cc_test(
     ],
     deps = [
         ":spdlog",
-    ]
+    ],
 )

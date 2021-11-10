@@ -20,7 +20,7 @@ various application domains.
 
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library", "cc_test")
 load("@rules_python//python:defs.bzl", "py_binary")
-load("@rules_hdl//dependency_support/at_clifford_yosys:yosys.bzl", "yosys_syntax_check", "move_files")
+load("@rules_hdl//dependency_support/at_clifford_yosys:yosys.bzl", "move_files", "yosys_syntax_check")
 load("@rules_hdl//dependency_support/com_github_westes_flex:flex.bzl", "genlex")
 load("@rules_hdl//dependency_support/org_gnu_bison:bison.bzl", "genyacc")
 
@@ -234,29 +234,29 @@ cc_binary(
 )
 
 move_files(
-  name = "common_techlibs",
-  srcs = glob([
-    "techlibs/common/*.v",
-  ]),
-  destination = "techlibs",
+    name = "common_techlibs",
+    srcs = glob([
+        "techlibs/common/*.v",
+    ]),
+    destination = "techlibs",
 )
 
 filegroup(
-  name = "share_files",
-  srcs = glob(
-    include = [
-      "techlibs/common/*.v",
-      "techlibs/**/*.v",
-      "techlibs/**/*.vh",
-      "techlibs/**/*.lib",
-      "techlibs/**/*.txt",
+    name = "share_files",
+    srcs = glob(
+        include = [
+            "techlibs/common/*.v",
+            "techlibs/**/*.v",
+            "techlibs/**/*.vh",
+            "techlibs/**/*.lib",
+            "techlibs/**/*.txt",
+        ],
+        exclude = [
+            "techlibs/common/*.v",
+        ],
+    ) + [
+        ":common_techlibs",
     ],
-    exclude = [
-      "techlibs/common/*.v",
-    ]
-  ) + [
-    ":common_techlibs"
-  ],
 )
 
 yosys_syntax_check(

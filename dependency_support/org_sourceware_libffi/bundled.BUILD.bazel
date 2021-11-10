@@ -332,7 +332,6 @@ cc_library(
     "return_complex_longdouble",
 ]]
 
-
 [cc_test(
     name = "%s_go_test" % go_test,
     srcs = [

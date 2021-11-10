@@ -12,9 +12,9 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-package(default_visibility = ['//visibility:public'])
+package(default_visibility = ["//visibility:public"])
 
 filegroup(
-  name = "all",
-  srcs = glob(["install/**/*"]),
+    name = "all",
+    srcs = glob(["install/**/*"]),
 )

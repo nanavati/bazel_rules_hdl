@@ -157,28 +157,28 @@ config_setting(
     name = "arm",
     values = {
         "cpu": "arm",
-    }
+    },
 )
 
 config_setting(
     name = "ppc",
     values = {
         "cpu": "ppc",
-    }
+    },
 )
 
 config_setting(
     name = "x86_64",
     values = {
         "cpu": "x86_64",
-    }
+    },
 )
 
 config_setting(
     name = "k8",
     values = {
         "cpu": "k8",
-    }
+    },
 )
 
 fftw_arch_srcs = select({

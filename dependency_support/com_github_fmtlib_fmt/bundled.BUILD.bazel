@@ -26,18 +26,18 @@ cc_library(
         "src/os.cc",
     ],
     hdrs = glob(
-      include = [
-        "include/fmt/*.h",
-      ],
-      exclude = [
-        "include/fmt/format-inl.h",
-      ]
+        include = [
+            "include/fmt/*.h",
+        ],
+        exclude = [
+            "include/fmt/format-inl.h",
+        ],
     ),
     # Turn off user-defined literals - they are not allowed by the Google style guide
     defines = ["FMT_USE_USER_DEFINED_LITERALS=0"],
     includes = [
-      "include",
-      "src"
+        "include",
+        "src",
     ],
 )
 
@@ -49,12 +49,12 @@ cc_library(
         "src/os.cc",
     ],
     hdrs = glob(
-      include = [
-        "include/fmt/*.h",
-      ],
-      exclude = [
-        "include/fmt/format-inl.h",
-      ]
+        include = [
+            "include/fmt/*.h",
+        ],
+        exclude = [
+            "include/fmt/format-inl.h",
+        ],
     ),
     copts = [
         "-fexceptions",
@@ -63,7 +63,7 @@ cc_library(
     defines = ["FMT_USE_USER_DEFINED_LITERALS=0"],
     features = ["-use_header_modules"],  # Needed due to -fexceptions
     includes = [
-      "include",
-      "src"
+        "include",
+        "src",
     ],
 )

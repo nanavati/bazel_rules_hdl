@@ -118,11 +118,9 @@ cc_library(
         "ext2spice/ext2spice.c",
         "extcheck/extcheck.c",
         "net2ir/net2ir.c",
-
         "bplane/bpTest.c",
         "utils/LIB*.c",
         "utils/parsetest.c",  # Not listed in Magic Makefile.
-
         "grouter/grouteNet.c",  # Not listed in Magic Makefile.
         "grouter/grouteTile.c",  # Not listed in Magic Makefile.
         "grouter/groutePin.c",  # Not listed in Magic Makefile.
@@ -147,7 +145,6 @@ cc_library(
     defines = DEFINES,
     copts = COPTS,
 )
-
 
 copy(
     name = "minimum_tech",
