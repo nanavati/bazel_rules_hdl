@@ -15,7 +15,7 @@
 # Place and Route tool package.
 
 load("//flows:flows.bzl", "flow_to_step", "run_flow")
-load("//flows/place_and_route:build_defs.bzl", "openroad_step")
+load("//flows/place_and_route:build_defs.bzl", "openroad_step", "read_libraries_step")
 
 openroad_step(
     name = "hello_openroad",
@@ -40,4 +40,21 @@ run_flow(
 flow_to_step(
     name = "hello_goodbye_bin",
     flow = ["hello_openroad", "goodbye_openroad"],
+)
+
+read_libraries_step(
+    name = "read_sky130_step",
+    standard_cells = "@com_google_skywater_pdk_sky130_fd_sc_hd//:sky130_fd_sc_hd",
+)
+
+run_flow(
+    name = "read_sky130",
+    flow = ["read_sky130_step"],
+    output_names = ["db"],
+    output_files = ["read_sky130.db"],
+)
+
+flow_to_step(
+    name = "read_sky130_bin",
+    flow = ["read_sky130_step"],
 )
