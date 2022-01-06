@@ -14,6 +14,8 @@
 
 # Place and Route tool package.
 
+load("@rules_pkg//:pkg.bzl", "pkg_tar")
+
 load("//flows:flows.bzl", "flow_to_step", "run_flow")
 load("//flows/place_and_route:build_defs.bzl", "openroad_step", "read_libraries_step")
 
@@ -57,4 +59,11 @@ run_flow(
 flow_to_step(
     name = "read_sky130_bin",
     flow = ["read_sky130_step"],
+)
+
+pkg_tar(
+    name = "read_sky130_pkg",
+    srcs = [":read_sky130_bin"],
+    include_runfiles = True,
+    strip_prefix = "./",
 )
