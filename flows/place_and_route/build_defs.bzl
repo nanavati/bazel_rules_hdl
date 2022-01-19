@@ -17,7 +17,14 @@
 load("//flows:flows.bzl", "FlowStepInfo", "script_prefix")
 load("//pdk:build_defs.bzl", "StandardCellInfo")
 
-def assemble_openroad_step(ctx, wrapper_name, script_file, step_runfiles, inputs = [], outputs = ["db"]):
+def assemble_openroad_step(
+        ctx,
+        wrapper_name,
+        script_file,
+        step_runfiles,
+        inputs = [],
+        outputs = ["db"],
+        constants = []):
     openroad_executable = ctx.attr._openroad.files_to_run.executable
     openroad_wrapper = ctx.actions.declare_file(wrapper_name)
     runfiles = ctx.runfiles(files = [script_file, openroad_executable, openroad_wrapper])
@@ -52,6 +59,7 @@ def assemble_openroad_step(ctx, wrapper_name, script_file, step_runfiles, inputs
         FlowStepInfo(
             inputs = inputs,
             outputs = outputs,
+            constants = constants,
             executable_type = "openroad",
             arguments = [],  # ["-quiet"], # Run quietly when part of a larger flow.
         ),
@@ -63,7 +71,15 @@ def assemble_openroad_step(ctx, wrapper_name, script_file, step_runfiles, inputs
     ]
 
 def _openroad_step_impl(ctx):
-    return assemble_openroad_step(ctx, ctx.attr.name, ctx.file.script, ctx.runfiles(), inputs = ctx.attr.inputs, outputs = ctx.attr.outputs)
+    return assemble_openroad_step(
+        ctx,
+        ctx.attr.name,
+        ctx.file.script,
+        ctx.runfiles(),
+        inputs = ctx.attr.inputs,
+        outputs = ctx.attr.outputs,
+        constants = ctx.attr.constants,
+    )
 
 # Rule for creating a generic openroad step that consumes inputs and produces outputs
 # as files (without using any Bazel providers).
@@ -81,10 +97,13 @@ openroad_step = rule(
             mandatory = True,
         ),
         "inputs": attr.string_list(
-            doc = "Name of logical inputs to the Tcl script",
+            doc = "Names of logical inputs to the Tcl script",
         ),
         "outputs": attr.string_list(
-            doc = "Name of logical outputs of the Tcl script",
+            doc = "Names of logical outputs of the Tcl script",
+        ),
+        "constants": attr.string_list(
+            doc = "Names of strings constants used by the Tcl script",
         ),
     },
     executable = True,
