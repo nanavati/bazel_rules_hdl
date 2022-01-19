@@ -20,6 +20,7 @@ load("//flows/place_and_route:build_defs.bzl", "openroad_step", "read_libraries_
 
 openroad_step(
     name = "hello_openroad",
+    constants = ["name"],
     outputs = ["hello"],
     script = "hello.tcl",
 )
@@ -33,6 +34,9 @@ openroad_step(
 
 run_flow(
     name = "hello_goodbye",
+    constants = {
+        "name": "TestConstant",
+    },
     flow = [
         "hello_openroad",
         "goodbye_openroad",
