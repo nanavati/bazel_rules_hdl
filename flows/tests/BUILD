@@ -28,6 +28,20 @@ run_flow(
     output_names = ["netlist"],
 )
 
+run_flow(
+    name = "combined_flow_test",
+    constants = {"top": "adder"},
+    flow = [
+        "//flows/synthesis:synth_sky130",
+        "//flows/place_and_route:read_sky130_step",
+        "//flows/place_and_route:read_design",
+    ],
+    input_files = ["verilog_adder.v"],
+    input_names = ["rtl"],
+    output_files = ["combined_adder.db"],
+    output_names = ["db"],
+)
+
 openroad_step(
     name = "hello_openroad",
     constants = ["name"],
