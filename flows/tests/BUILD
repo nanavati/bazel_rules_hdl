@@ -14,7 +14,9 @@
 
 # Modular hardware flow tests
 
+load("@bazel_skylib//rules:diff_test.bzl", "diff_test")
 load("//flows:flows.bzl", "flow_to_step", "run_flow")
+load("//flows/place_and_route:build_defs.bzl", "openroad_step")
 
 run_flow(
     name = "synth_sky130_test",
@@ -24,4 +26,45 @@ run_flow(
     input_names = ["rtl"],
     output_files = ["sky130_adder_test.v"],
     output_names = ["netlist"],
+)
+
+openroad_step(
+    name = "hello_openroad",
+    constants = ["name"],
+    outputs = ["hello"],
+    script = "hello.tcl",
+)
+
+openroad_step(
+    name = "goodbye_openroad",
+    inputs = ["hello"],
+    outputs = ["goodbye"],
+    script = "goodbye.tcl",
+)
+
+run_flow(
+    name = "hello_goodbye",
+    constants = {
+        "name": "TestName",
+    },
+    flow = [
+        "hello_openroad",
+        "goodbye_openroad",
+    ],
+    output_files = ["goodbye.txt"],
+    output_names = ["goodbye"],
+)
+
+diff_test(
+    name = "openroad_step_smoke",
+    file1 = "goodbye.txt",
+    file2 = "goodbye.txt.golden",
+)
+
+flow_to_step(
+    name = "hello_goodbye_bin",
+    flow = [
+        "hello_openroad",
+        "goodbye_openroad",
+    ],
 )
