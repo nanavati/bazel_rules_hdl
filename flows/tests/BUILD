@@ -44,6 +44,7 @@ run_flow(
         "//flows/place_and_route:read_sky130_step",
         "//flows/place_and_route:read_design",
         "//flows/place_and_route:create_simple_clock",
+        "//flows/place_and_route:report_metrics",
     ],
     input_files = ["adder_reg.v"],
     input_names = ["rtl"],

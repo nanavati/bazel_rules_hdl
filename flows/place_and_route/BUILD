@@ -65,3 +65,10 @@ openroad_step(
     outputs = ["db"],
     script = "create_simple_clock.tcl",
 )
+
+openroad_step(
+    name = "report_metrics",
+    inputs = ["db"],
+    outputs = ["metrics"],
+    script = "report_metrics.tcl",
+)
