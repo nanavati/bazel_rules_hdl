@@ -22,10 +22,10 @@ run_flow(
     name = "synth_sky130_test",
     constants = {
         "clock_period_ps": "10000",  # 100 MHz target
-        "top": "adder",
+        "top": "adder_reg",
     },
     flow = ["//flows/synthesis:synth_sky130"],
-    input_files = ["verilog_adder.v"],
+    input_files = ["adder_reg.v"],
     input_names = ["rtl"],
     output_files = ["sky130_adder_test.v"],
     output_names = ["netlist"],
@@ -35,14 +35,14 @@ run_flow(
     name = "combined_flow_test",
     constants = {
         "clock_period_ps": "10000",  # 100 MHz target
-        "top": "adder",
+        "top": "adder_reg",
     },
     flow = [
         "//flows/synthesis:synth_sky130",
         "//flows/place_and_route:read_sky130_step",
         "//flows/place_and_route:read_design",
     ],
-    input_files = ["verilog_adder.v"],
+    input_files = ["adder_reg.v"],
     input_names = ["rtl"],
     output_files = ["combined_adder.db"],
     output_names = ["db"],
