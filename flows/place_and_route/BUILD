@@ -54,3 +54,14 @@ openroad_step(
     outputs = ["db"],
     script = "read_design.tcl",
 )
+
+openroad_step(
+    name = "create_simple_clock",
+    constants = [
+        "clock_port",
+        "clock_period_ps",
+    ],
+    inputs = ["db"],
+    outputs = ["db"],
+    script = "create_simple_clock.tcl",
+)

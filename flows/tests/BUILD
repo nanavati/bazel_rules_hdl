@@ -35,6 +35,7 @@ run_flow(
 run_flow(
     name = "sky130_combined_flow",
     constants = {
+        "clock_port": "clk",
         "clock_period_ps": "10000",  # 100 MHz target
         "top": "adder_reg",
     },
@@ -42,6 +43,7 @@ run_flow(
         "//flows/synthesis:synth_sky130",
         "//flows/place_and_route:read_sky130_step",
         "//flows/place_and_route:read_design",
+        "//flows/place_and_route:create_simple_clock",
     ],
     input_files = ["adder_reg.v"],
     input_names = ["rtl"],
