@@ -65,7 +65,7 @@ def _yosys_synth_file_step_impl(ctx):
         FlowStepInfo(
             inputs = ["rtl"],
             outputs = ["netlist"],
-            constants = ["top"],  # , "clock_period"],
+            constants = ["top", "clock_period_ps"],
             executable_type = "yosys",
             arguments = [],
         ),

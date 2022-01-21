@@ -20,7 +20,10 @@ load("//flows/place_and_route:build_defs.bzl", "openroad_step")
 
 run_flow(
     name = "synth_sky130_test",
-    constants = {"top": "adder"},
+    constants = {
+        "clock_period_ps": "10000",  # 100 MHz target
+        "top": "adder",
+    },
     flow = ["//flows/synthesis:synth_sky130"],
     input_files = ["verilog_adder.v"],
     input_names = ["rtl"],
@@ -30,7 +33,10 @@ run_flow(
 
 run_flow(
     name = "combined_flow_test",
-    constants = {"top": "adder"},
+    constants = {
+        "clock_period_ps": "10000",  # 100 MHz target
+        "top": "adder",
+    },
     flow = [
         "//flows/synthesis:synth_sky130",
         "//flows/place_and_route:read_sky130_step",
