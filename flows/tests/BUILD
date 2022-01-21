@@ -47,8 +47,14 @@ run_flow(
     ],
     input_files = ["adder_reg.v"],
     input_names = ["rtl"],
-    output_files = ["combined_adder.db"],
-    output_names = ["db"],
+    output_files = [
+        "combined_adder.db",
+        "combined_metrics.json",
+    ],
+    output_names = [
+        "db",
+        "metrics",
+    ],
 )
 
 build_test(
