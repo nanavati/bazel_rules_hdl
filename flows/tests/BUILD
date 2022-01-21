@@ -14,12 +14,13 @@
 
 # Modular hardware flow tests
 
+load("@bazel_skylib//rules:build_test.bzl", "build_test")
 load("@bazel_skylib//rules:diff_test.bzl", "diff_test")
 load("//flows:flows.bzl", "flow_to_step", "run_flow")
 load("//flows/place_and_route:build_defs.bzl", "openroad_step")
 
 run_flow(
-    name = "synth_sky130_test",
+    name = "sky130_synth_only",
     constants = {
         "clock_period_ps": "10000",  # 100 MHz target
         "top": "adder_reg",
@@ -32,7 +33,7 @@ run_flow(
 )
 
 run_flow(
-    name = "combined_flow_test",
+    name = "sky130_combined_flow",
     constants = {
         "clock_period_ps": "10000",  # 100 MHz target
         "top": "adder_reg",
@@ -46,6 +47,14 @@ run_flow(
     input_names = ["rtl"],
     output_files = ["combined_adder.db"],
     output_names = ["db"],
+)
+
+build_test(
+    name = "sky130_flows",
+    targets = [
+        ":sky130_synth_only",
+        ":sky130_combined_flow",
+    ],
 )
 
 openroad_step(
